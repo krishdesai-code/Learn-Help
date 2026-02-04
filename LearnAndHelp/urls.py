@@ -21,4 +21,5 @@ from . import views
 urlpatterns = [
     path("",views.MainPage,name="MainPage"),
     path("user/",include("Account.urls")),
+    path("skills/",include("skills.urls")),
 ]

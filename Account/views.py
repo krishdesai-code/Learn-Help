@@ -28,6 +28,7 @@ def loginPage(request):
         
         if(user):
             request.session['email'] = user.email
+            request.session['name'] = user.name
             return redirect("home")
         else :
             return render(request,"account/login.html",{'error' : 'Invalid email or password'})
