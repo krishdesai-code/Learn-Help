@@ -27,6 +27,7 @@ def loginPage(request):
         user = User.objects.get(email=email,password=hased_pass)
         
         if(user):
+            request.session['user_id'] = user.id
             request.session['email'] = user.email
             request.session['name'] = user.name
             return redirect("home")
