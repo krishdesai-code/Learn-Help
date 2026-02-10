@@ -8,7 +8,10 @@ def All_skills(request):
 
 def Add_skills(request):
     user_id = request.session.get('user_id')
-    user = User.objects.get(id=user_id)
+    if not user_id:
+        return redirect("loginPage")
+    user = User.objects.get(fk=user_id)
+
     if request.method == 'POST':
       skill_title = request.POST.get('skill_title')
       skill_description = request.POST.get('skill_desc')
@@ -27,7 +30,13 @@ def Add_skills(request):
 
 def my_skill(request):
     user_id = request.session.get('user_id')
-    my_skills = Skills.objects.filter(user_id=user_id)
+    if not user_id:
+        return redirect("loginPage")
+
+    try :
+        my_skills = Skills.objects.filter(user_id=user_id)
+    except Skills.DoesNotExist:
+        return render(request,"skills/my_skill.html",{'error' : 'Not found'})
 
     return render(
         request,
