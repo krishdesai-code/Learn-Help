@@ -43,3 +43,7 @@ def my_skill(request):
         "skills/my_skill.html",
         {'my_skills': my_skills}
     )
+
+def skill_details(request,id):
+    skill = Skills.objects.get(id=id) 
+    return render(request,"skills/skill_detail.html",{ 'skill' : skill })
