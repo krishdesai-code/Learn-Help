@@ -1,0 +1,38 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <header>
+        <img src="{% static 'img/logo.png'%}" alt="logo" width="30%">
+    </header>
+    <link rel="stylesheet" href="{% static 'css/account/login.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap">
+</head>
+<body>
+    <main>
+        <div class="left">
+            <img src="{% static 'img/mainpage.png'%}" alt="logo" width="50%" >
+            <div class="text">
+                <h2 id="w">Keep learning</h2>
+                <h2 id="k">Keep helping others learn.</h2>
+
+            </div> 
+            <button><a href="{% url "registerPage" %}">Register</a></button>
+        </div>
+        <div class="right">
+            <div class="register">
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" id="btn" value="Log-In">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
