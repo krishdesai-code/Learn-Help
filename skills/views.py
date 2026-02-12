@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Skills
+from .models import Skills,Skill_category
 from Account.models import User
 
 def All_skills(request):
@@ -17,6 +17,9 @@ def Add_skills(request):
       skill_description = request.POST.get('skill_desc')
       skill_level = request.POST.get('skill_level')
       skill_link = request.POST.get('skill_link')
+      skill_category = request.POST.get('skill_category')
+
+      category = Skill_category.objects.get(id=skill_category)
       
       Skills.objects.create(
           user=user,
@@ -24,6 +27,7 @@ def Add_skills(request):
           skill_description = skill_description,
           skill_level=skill_level,
           skill_links = skill_link,
+          skill_category = category.id
       )
       return redirect("allSkills")
     return render(request,"skills/add_skill.html")
